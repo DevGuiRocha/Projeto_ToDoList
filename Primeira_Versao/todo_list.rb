@@ -4,15 +4,21 @@ class ToDoList
   end
 
   def start
-    exibe_menu
-    escolha = gets.chomp.to_i
-    case escolha
-      when 1 then adiciona_task
-      when 2 then
-      when 3 then
-      when 4 then
-      when 5 
-      else
+    loop do
+      exibe_menu
+      escolha = gets.chomp.to_i
+
+      case escolha
+        when 1 then adiciona_task
+        when 2 then lista_task
+        when 3 then
+        when 4 then
+        when 5 
+          puts "Encerrando o programa... Até Logo!!"
+          break
+        else
+          puts "Opção inválida!! Selecione de acordo com o menu..."
+      end
     end
   end
 
@@ -31,10 +37,26 @@ class ToDoList
   def adiciona_task
     puts "Digite o título da tarefa:"
     titulo = gets.chomp
+
     puts "Digite a descrição da tarefa:"
     descricao = gets.chomp
+    
     @task << { title: titulo, description: descricao, completed: false }
     puts "Tarefa adicionada com sucesso"
+  end
+
+  def lista_task
+    if @task.empty?
+      puts "Nenhuma tarefa cadastrada. Cadastre uma antes de exibir!!"
+    else
+      puts "\n=== Tasks ==="
+      
+      @task.each_with_index do |task, index|
+        status = task[:completed] ? "[X]" : "[ ]"
+        puts "#{index + 1}. #{status} #{task[:title]}"
+        puts "Descrição -> #{task[:description]}"
+      end
+    end
   end
 end
 

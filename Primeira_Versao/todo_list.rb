@@ -11,7 +11,7 @@ class ToDoList
       case escolha
         when 1 then adiciona_task
         when 2 then lista_task
-        when 3 then
+        when 3 then atualiza_task
         when 4 then
         when 5 
           puts "Encerrando o programa... Até Logo!!"
@@ -57,6 +57,25 @@ class ToDoList
         puts "Descrição -> #{task[:description]}"
       end
     end
+  end
+
+  def atualiza_task
+    lista_task
+    unless @task.empty?
+      puts "Informe o número da task que deseja atualizar:"
+      index = gets.chomp.to_i - 1
+
+      if index_valido?(index)
+        @task[index][:completed] = true
+        puts "Tarefa concluída com sucesso!!"
+      else
+        puts "Tarefa Inválida!!"
+      end
+    end
+  end
+
+  def index_valido?(index)
+    index >=0 && index < @task.size
   end
 end
 

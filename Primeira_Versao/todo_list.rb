@@ -12,7 +12,7 @@ class ToDoList
         when 1 then adiciona_task
         when 2 then lista_task
         when 3 then atualiza_task
-        when 4 then
+        when 4 then remove_task
         when 5 
           puts "Encerrando o programa... Até Logo!!"
           break
@@ -70,6 +70,27 @@ class ToDoList
         puts "Tarefa concluída com sucesso!!"
       else
         puts "Tarefa Inválida!!"
+      end
+    end
+  end
+
+  def remove_task
+    lista_task
+    unless @task.empty?
+      puts "Informe o número da task que deseja apagar:"
+      index = gets.chomp.to_i - 1
+
+      if index_valido?(index)
+        puts "TEM CERTEZA? NÃO É POSSÍVEL RECUPERAR APÓS EXCLUSÃO [S/N]"
+        confirmacao = gets.chomp.to_s
+        if confirmacao == 's' || confirmacao == 'S'
+          @task.delete_at(index)
+          puts "Tarefa excluída com sucesso!!"
+        else
+          puts "Nenhuma tarefa alterada!!"
+        end
+      else
+        puts "Task inválida!!"
       end
     end
   end

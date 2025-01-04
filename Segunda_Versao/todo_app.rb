@@ -1,6 +1,10 @@
 class ToDoApp
   def start
-    show_menu
+    loop do
+      show_menu
+      escolha = gets.chomp.to_i
+      verifica_escolha(escolha)
+    end
   end
 
   private
@@ -13,6 +17,20 @@ class ToDoApp
     puts "4. Remover Tarefa"
     puts "5. Sair"
     print "Escolha uma opção: "
+  end
+
+  def verifica_escolha(escolha)
+    case escolha
+      when 1 then
+      when 2 then
+      when 3 then
+      when 4 then
+      when 5 then
+        puts "Programa sendo encerrado. Até Breve!!"
+        exit
+      else
+        puts "Opção incorreta, tente novamente"
+    end
   end
 end
 
